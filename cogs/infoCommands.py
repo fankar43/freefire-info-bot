@@ -88,7 +88,7 @@ class InfoCommands(commands.Cog):
             print(f"Error checking channel permission: {e}")
             return False
 
-    @commands.hybrid_command(name="setinfochannel", description="Allow a channel for !info commands")
+    @commands.hybrid_command(name="setinfochannel", description="Allow a channel for /info commands")
     @commands.has_permissions(administrator=True)
     async def set_info_channel(self, ctx: commands.Context, channel: discord.TextChannel):
         guild_id = str(ctx.guild.id)
@@ -96,11 +96,11 @@ class InfoCommands(commands.Cog):
         if str(channel.id) not in self.config_data["servers"][guild_id]["info_channels"]:
             self.config_data["servers"][guild_id]["info_channels"].append(str(channel.id))
             self.save_config()
-            await ctx.send(f"✅ {channel.mention} is now allowed for `!info` commands")
+            await ctx.send(f"✅ {channel.mention} is now allowed for `/info` commands")
         else:
-            await ctx.send(f"ℹ️ {channel.mention} is already allowed for `!info` commands")
+            await ctx.send(f"ℹ️ {channel.mention} is already allowed for `/info` commands")
 
-    @commands.hybrid_command(name="removeinfochannel", description="Remove a channel from !info commands")
+    @commands.hybrid_command(name="removeinfochannel", description="Remove a channel from /info commands")
     @commands.has_permissions(administrator=True)
     async def remove_info_channel(self, ctx: commands.Context, channel: discord.TextChannel):
         guild_id = str(ctx.guild.id)
@@ -125,17 +125,17 @@ class InfoCommands(commands.Cog):
                 channels.append(f"• {channel.mention if channel else f'ID: {channel_id}'}")
 
             embed = discord.Embed(
-                title="Allowed channels for !info",
+                title="Allowed channels for /info",
                 description="\n".join(channels),
-                color=discord.Color.blue()
+                color=discord.Color.red()
             )
             cooldown = self.config_data["servers"][guild_id]["config"].get("cooldown", self.config_data["global_settings"]["default_cooldown"])
             embed.set_footer(text=f"Current cooldown: {cooldown} seconds")
         else:
             embed = discord.Embed(
-                title="Allowed channels for !info",
+                title="Allowed channels for /info",
                 description="All channels are allowed (no restriction configured)",
-                color=discord.Color.blue()
+                color=discord.Color.red()
             )
 
         await ctx.send(embed=embed)
@@ -194,7 +194,7 @@ class InfoCommands(commands.Cog):
             )
             embed.set_thumbnail(url=ctx.author.display_avatar.url)
 
-           embed.add_field(name="", value="\n".join([
+            embed.add_field(name="", value="\n".join([
     "🧾 **┌ ACCOUNT BASIC INFO**",
     f"👤 **├─ Name**: {basic_info.get('nickname', 'Not found')}",
     f"🆔 **├─ UID**: `{uid}`",
@@ -252,6 +252,7 @@ class InfoCommands(commands.Cog):
             f"   ⚔️ **└─ CS Rank**: {'' if captain_info.get('showCsRank') else 'Not found'} {captain_info.get('csRankingPoints', 'Not found')}"
         ])
             embed.add_field(name="", value="\n".join(guild_info), inline=False)
+
 
 
 

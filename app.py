@@ -37,7 +37,7 @@ class Bot(commands.Bot):
         intents.message_content = True
         
         super().__init__(
-            command_prefix="!",
+            command_prefix="/",
             intents=intents,
             help_command=None
         )

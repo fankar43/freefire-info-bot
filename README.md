@@ -68,7 +68,7 @@ It returns profile data such as level, rank, guild info, credit score, social pr
 
 ## Usage
 
-- Use `!info <user_id>` in a Discord server where the bot is present.
+- Use `/info <user_id>` in a Discord server where the bot is present.
 - The bot will fetch  information from [free-fire-info-api](https://github.com/paulafredo/free-fire-info-api) and respond with an embedded message.
 
 
@@ -77,7 +77,7 @@ It returns profile data such as level, rank, guild info, credit score, social pr
 
 1. Go to the [Discord Developer Portal](https://discord.com/developers/applications).
 2. Click **"New Application"**, and give your bot a name.
-3. In the left sidebar, go to the **"Bot"** section and click **"Add Bot"**, then confirm with **"Yes, do it!"**.
+3. In the left sidebar, go to the **"Bot"** section and click **"Add Bot"**, then confirm with **"Yes, do it/"**.
 4. Under the **Token** section, click **"Reset Token"** or **"Copy"** to get your `TOKEN`.
 5. Go to **"General Information"** and copy the `APPLICATION_ID`.
 6. Paste both values into your `.env` file:
@@ -100,7 +100,7 @@ It returns profile data such as level, rank, guild info, credit score, social pr
 
 ## 📚 Bot Commands
 
-### `!info <user_id>`
+### `/info <user_id>`
 Check whether a Free Fire account is **banned** or **not**.
 
 - 📥 **Input:** a user ID (UID)
